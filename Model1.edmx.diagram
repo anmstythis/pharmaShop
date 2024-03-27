@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b1023460be194fefa256c1cac88e1b77" Name="Diagram1">
+        <EntityTypeShape EntityType="pharmaShopModel.Accounts" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaShopModel.Companies" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaShopModel.Customers" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaShopModel.Customs" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaShopModel.DepartmentProduct" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaShopModel.Departments" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaShopModel.Products" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaShopModel.ProductTypes" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaShopModel.Roles" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaShopModel.Staff" Width="1.5" PointX="9.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmaShopModel.StaffPosts" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="pharmaShopModel.FK__Accounts__role_I__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaShopModel.FK__Customers__accou__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaShopModel.FK__Staff__account_I__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaShopModel.FK__ProductTy__compa__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaShopModel.FK__Customs__custome__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaShopModel.FK__Customs__product__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaShopModel.FK__Departmen__depar__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaShopModel.FK__Departmen__produ__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaShopModel.FK__StaffPost__depar__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaShopModel.FK__Products__produc__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="pharmaShopModel.FK__Staff__post_ID__5535A963" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

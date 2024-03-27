@@ -1,0 +1,744 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище pharmaShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="ID_account" />
+          </Key>
+          <Property Name="ID_account" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_login" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="user_password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="role_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="ID_company" />
+          </Key>
+          <Property Name="ID_company" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="company_address" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="ID_customer" />
+          </Key>
+          <Property Name="ID_customer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="account_ID" Type="int" Nullable="false" />
+          <Property Name="age" Type="int" />
+        </EntityType>
+        <EntityType Name="Customs">
+          <Key>
+            <PropertyRef Name="ID_custom" />
+          </Key>
+          <Property Name="ID_custom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_ID" Type="int" Nullable="false" />
+          <Property Name="product_ID" Type="int" Nullable="false" />
+          <Property Name="product_amount" Type="int" />
+        </EntityType>
+        <EntityType Name="DepartmentProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="department_ID" Type="int" Nullable="false" />
+          <Property Name="product_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="ID_department" />
+          </Key>
+          <Property Name="ID_department" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="department_name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="address_name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ID_product" />
+          </Key>
+          <Property Name="ID_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productType_ID" Type="int" Nullable="false" />
+          <Property Name="product_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductTypes">
+          <Key>
+            <PropertyRef Name="ID_type" />
+          </Key>
+          <Property Name="ID_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_label" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="product_description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="company_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_role" />
+          </Key>
+          <Property Name="ID_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_label" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID_staff" />
+          </Key>
+          <Property Name="ID_staff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="middle_name" Type="varchar" MaxLength="50" />
+          <Property Name="account_ID" Type="int" />
+          <Property Name="post_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StaffPosts">
+          <Key>
+            <PropertyRef Name="ID_post" />
+          </Key>
+          <Property Name="ID_post" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="post_name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="post_description" Type="varchar" MaxLength="100" />
+          <Property Name="department_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Accounts__role_I__59063A47">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_role" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customers__accou__3E52440B">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID_account" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customs__custome__5FB337D6">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Customs" Type="Self.Customs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID_customer" />
+            </Principal>
+            <Dependent Role="Customs">
+              <PropertyRef Name="customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customs__product__60A75C0F">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Customs" Type="Self.Customs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID_product" />
+            </Principal>
+            <Dependent Role="Customs">
+              <PropertyRef Name="product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__depar__6383C8BA">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="DepartmentProduct" Type="Self.DepartmentProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID_department" />
+            </Principal>
+            <Dependent Role="DepartmentProduct">
+              <PropertyRef Name="department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__produ__6477ECF3">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="DepartmentProduct" Type="Self.DepartmentProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID_product" />
+            </Principal>
+            <Dependent Role="DepartmentProduct">
+              <PropertyRef Name="product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__produc__5CD6CB2B">
+          <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypes">
+              <PropertyRef Name="ID_type" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="productType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductTy__compa__440B1D61">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID_company" />
+            </Principal>
+            <Dependent Role="ProductTypes">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__account_I__5441852A">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID_account" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__post_ID__5535A963">
+          <End Role="StaffPosts" Type="Self.StaffPosts" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffPosts">
+              <PropertyRef Name="ID_post" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="post_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StaffPost__depar__5165187F">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="StaffPosts" Type="Self.StaffPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID_department" />
+            </Principal>
+            <Dependent Role="StaffPosts">
+              <PropertyRef Name="department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище pharmaShopModelContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customs" EntityType="Self.Customs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentProduct" EntityType="Self.DepartmentProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffPosts" EntityType="Self.StaffPosts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Accounts__role_I__59063A47" Association="Self.FK__Accounts__role_I__59063A47">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customers__accou__3E52440B" Association="Self.FK__Customers__accou__3E52440B">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customs__custome__5FB337D6" Association="Self.FK__Customs__custome__5FB337D6">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Customs" EntitySet="Customs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customs__product__60A75C0F" Association="Self.FK__Customs__product__60A75C0F">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Customs" EntitySet="Customs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__depar__6383C8BA" Association="Self.FK__Departmen__depar__6383C8BA">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="DepartmentProduct" EntitySet="DepartmentProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__produ__6477ECF3" Association="Self.FK__Departmen__produ__6477ECF3">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="DepartmentProduct" EntitySet="DepartmentProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__produc__5CD6CB2B" Association="Self.FK__Products__produc__5CD6CB2B">
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductTy__compa__440B1D61" Association="Self.FK__ProductTy__compa__440B1D61">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__account_I__5441852A" Association="Self.FK__Staff__account_I__5441852A">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__post_ID__5535A963" Association="Self.FK__Staff__post_ID__5535A963">
+            <End Role="StaffPosts" EntitySet="StaffPosts" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StaffPost__depar__5165187F" Association="Self.FK__StaffPost__depar__5165187F">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="StaffPosts" EntitySet="StaffPosts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pharmaShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="ID_account" />
+          </Key>
+          <Property Name="ID_account" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Accounts__role_I__59063A47" FromRole="Accounts" ToRole="Roles" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK__Customers__accou__3E52440B" FromRole="Accounts" ToRole="Customers" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__Staff__account_I__5441852A" FromRole="Accounts" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="ID_company" />
+          </Key>
+          <Property Name="ID_company" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="company_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ProductTypes" Relationship="Self.FK__ProductTy__compa__440B1D61" FromRole="Companies" ToRole="ProductTypes" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="ID_customer" />
+          </Key>
+          <Property Name="ID_customer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="account_ID" Type="Int32" Nullable="false" />
+          <Property Name="age" Type="Int32" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Customers__accou__3E52440B" FromRole="Customers" ToRole="Accounts" />
+          <NavigationProperty Name="Customs" Relationship="Self.FK__Customs__custome__5FB337D6" FromRole="Customers" ToRole="Customs" />
+        </EntityType>
+        <EntityType Name="Customs">
+          <Key>
+            <PropertyRef Name="ID_custom" />
+          </Key>
+          <Property Name="ID_custom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_ID" Type="Int32" Nullable="false" />
+          <Property Name="product_ID" Type="Int32" Nullable="false" />
+          <Property Name="product_amount" Type="Int32" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK__Customs__custome__5FB337D6" FromRole="Customs" ToRole="Customers" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Customs__product__60A75C0F" FromRole="Customs" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="DepartmentProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department_ID" Type="Int32" Nullable="false" />
+          <Property Name="product_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK__Departmen__depar__6383C8BA" FromRole="DepartmentProduct" ToRole="Departments" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Departmen__produ__6477ECF3" FromRole="DepartmentProduct" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="ID_department" />
+          </Key>
+          <Property Name="ID_department" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department_name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DepartmentProduct" Relationship="Self.FK__Departmen__depar__6383C8BA" FromRole="Departments" ToRole="DepartmentProduct" />
+          <NavigationProperty Name="StaffPosts" Relationship="Self.FK__StaffPost__depar__5165187F" FromRole="Departments" ToRole="StaffPosts" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ID_product" />
+          </Key>
+          <Property Name="ID_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productType_ID" Type="Int32" Nullable="false" />
+          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customs" Relationship="Self.FK__Customs__product__60A75C0F" FromRole="Products" ToRole="Customs" />
+          <NavigationProperty Name="DepartmentProduct" Relationship="Self.FK__Departmen__produ__6477ECF3" FromRole="Products" ToRole="DepartmentProduct" />
+          <NavigationProperty Name="ProductTypes" Relationship="Self.FK__Products__produc__5CD6CB2B" FromRole="Products" ToRole="ProductTypes" />
+        </EntityType>
+        <EntityType Name="ProductTypes">
+          <Key>
+            <PropertyRef Name="ID_type" />
+          </Key>
+          <Property Name="ID_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_label" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="product_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="company_ID" Type="Int32" />
+          <NavigationProperty Name="Companies" Relationship="Self.FK__ProductTy__compa__440B1D61" FromRole="ProductTypes" ToRole="Companies" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__produc__5CD6CB2B" FromRole="ProductTypes" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_role" />
+          </Key>
+          <Property Name="ID_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_label" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Accounts__role_I__59063A47" FromRole="Roles" ToRole="Accounts" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID_staff" />
+          </Key>
+          <Property Name="ID_staff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="middle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="account_ID" Type="Int32" />
+          <Property Name="post_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Staff__account_I__5441852A" FromRole="Staff" ToRole="Accounts" />
+          <NavigationProperty Name="StaffPosts" Relationship="Self.FK__Staff__post_ID__5535A963" FromRole="Staff" ToRole="StaffPosts" />
+        </EntityType>
+        <EntityType Name="StaffPosts">
+          <Key>
+            <PropertyRef Name="ID_post" />
+          </Key>
+          <Property Name="ID_post" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="post_name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="post_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="department_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK__StaffPost__depar__5165187F" FromRole="StaffPosts" ToRole="Departments" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__Staff__post_ID__5535A963" FromRole="StaffPosts" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK__Accounts__role_I__59063A47">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_role" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customers__accou__3E52440B">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID_account" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__account_I__5441852A">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="ID_account" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="account_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductTy__compa__440B1D61">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="ID_company" />
+            </Principal>
+            <Dependent Role="ProductTypes">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customs__custome__5FB337D6">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Customs" Type="Self.Customs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID_customer" />
+            </Principal>
+            <Dependent Role="Customs">
+              <PropertyRef Name="customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customs__product__60A75C0F">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Customs" Type="Self.Customs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID_product" />
+            </Principal>
+            <Dependent Role="Customs">
+              <PropertyRef Name="product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__depar__6383C8BA">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="DepartmentProduct" Type="Self.DepartmentProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID_department" />
+            </Principal>
+            <Dependent Role="DepartmentProduct">
+              <PropertyRef Name="department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__produ__6477ECF3">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="DepartmentProduct" Type="Self.DepartmentProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID_product" />
+            </Principal>
+            <Dependent Role="DepartmentProduct">
+              <PropertyRef Name="product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StaffPost__depar__5165187F">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="StaffPosts" Type="Self.StaffPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="ID_department" />
+            </Principal>
+            <Dependent Role="StaffPosts">
+              <PropertyRef Name="department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__produc__5CD6CB2B">
+          <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypes">
+              <PropertyRef Name="ID_type" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="productType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__post_ID__5535A963">
+          <End Role="StaffPosts" Type="Self.StaffPosts" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StaffPosts">
+              <PropertyRef Name="ID_post" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="post_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="pharmaShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" />
+          <EntitySet Name="Customs" EntityType="Self.Customs" />
+          <EntitySet Name="DepartmentProduct" EntityType="Self.DepartmentProduct" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="StaffPosts" EntityType="Self.StaffPosts" />
+          <AssociationSet Name="FK__Accounts__role_I__59063A47" Association="Self.FK__Accounts__role_I__59063A47">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customers__accou__3E52440B" Association="Self.FK__Customers__accou__3E52440B">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__account_I__5441852A" Association="Self.FK__Staff__account_I__5441852A">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductTy__compa__440B1D61" Association="Self.FK__ProductTy__compa__440B1D61">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customs__custome__5FB337D6" Association="Self.FK__Customs__custome__5FB337D6">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Customs" EntitySet="Customs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customs__product__60A75C0F" Association="Self.FK__Customs__product__60A75C0F">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Customs" EntitySet="Customs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__depar__6383C8BA" Association="Self.FK__Departmen__depar__6383C8BA">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="DepartmentProduct" EntitySet="DepartmentProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__produ__6477ECF3" Association="Self.FK__Departmen__produ__6477ECF3">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="DepartmentProduct" EntitySet="DepartmentProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StaffPost__depar__5165187F" Association="Self.FK__StaffPost__depar__5165187F">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="StaffPosts" EntitySet="StaffPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__produc__5CD6CB2B" Association="Self.FK__Products__produc__5CD6CB2B">
+            <End Role="ProductTypes" EntitySet="ProductTypes" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__post_ID__5535A963" Association="Self.FK__Staff__post_ID__5535A963">
+            <End Role="StaffPosts" EntitySet="StaffPosts" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище pharmaShopModelContainer" CdmEntityContainer="pharmaShopEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="pharmaShopModel.Accounts">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="ID_account" ColumnName="ID_account" />
+                <ScalarProperty Name="user_login" ColumnName="user_login" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="role_ID" ColumnName="role_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="pharmaShopModel.Companies">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="ID_company" ColumnName="ID_company" />
+                <ScalarProperty Name="company_name" ColumnName="company_name" />
+                <ScalarProperty Name="company_address" ColumnName="company_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="pharmaShopModel.Customers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="ID_customer" ColumnName="ID_customer" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="account_ID" ColumnName="account_ID" />
+                <ScalarProperty Name="age" ColumnName="age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customs">
+            <EntityTypeMapping TypeName="pharmaShopModel.Customs">
+              <MappingFragment StoreEntitySet="Customs">
+                <ScalarProperty Name="ID_custom" ColumnName="ID_custom" />
+                <ScalarProperty Name="customer_ID" ColumnName="customer_ID" />
+                <ScalarProperty Name="product_ID" ColumnName="product_ID" />
+                <ScalarProperty Name="product_amount" ColumnName="product_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentProduct">
+            <EntityTypeMapping TypeName="pharmaShopModel.DepartmentProduct">
+              <MappingFragment StoreEntitySet="DepartmentProduct">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="department_ID" ColumnName="department_ID" />
+                <ScalarProperty Name="product_ID" ColumnName="product_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="pharmaShopModel.Departments">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="ID_department" ColumnName="ID_department" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="address_name" ColumnName="address_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="pharmaShopModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ID_product" ColumnName="ID_product" />
+                <ScalarProperty Name="productType_ID" ColumnName="productType_ID" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="pharmaShopModel.ProductTypes">
+              <MappingFragment StoreEntitySet="ProductTypes">
+                <ScalarProperty Name="ID_type" ColumnName="ID_type" />
+                <ScalarProperty Name="type_label" ColumnName="type_label" />
+                <ScalarProperty Name="product_description" ColumnName="product_description" />
+                <ScalarProperty Name="company_ID" ColumnName="company_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="pharmaShopModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ID_role" ColumnName="ID_role" />
+                <ScalarProperty Name="role_label" ColumnName="role_label" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="pharmaShopModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="ID_staff" ColumnName="ID_staff" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="account_ID" ColumnName="account_ID" />
+                <ScalarProperty Name="post_ID" ColumnName="post_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StaffPosts">
+            <EntityTypeMapping TypeName="pharmaShopModel.StaffPosts">
+              <MappingFragment StoreEntitySet="StaffPosts">
+                <ScalarProperty Name="ID_post" ColumnName="ID_post" />
+                <ScalarProperty Name="post_name" ColumnName="post_name" />
+                <ScalarProperty Name="post_description" ColumnName="post_description" />
+                <ScalarProperty Name="department_ID" ColumnName="department_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

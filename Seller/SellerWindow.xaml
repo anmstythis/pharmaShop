@@ -1,0 +1,25 @@
+﻿<Window x:Class="pharmaShop.SellerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:pharmaShop"
+        mc:Ignorable="d"
+        Title="SellerWindow" Height="450" Width="800" Background="#FFBCDEEE">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Frame x:Name="PageFrame"  Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
+        <Button x:Name="prodButton" Content="Товары" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="prodButton_Click"/>
+        <Button x:Name="departButton" Content="Отделения" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="departButton_Click"/>
+        <Button x:Name="compButton" Content="Тип продукта" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="compButton_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище pharmaShopModelContainer" CdmEntityContainer="pharmaShopEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="pharmaShopModel.Accounts">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="ID_account" ColumnName="ID_account" />
+          <ScalarProperty Name="user_login" ColumnName="user_login" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="role_ID" ColumnName="role_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="pharmaShopModel.Companies">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="ID_company" ColumnName="ID_company" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="company_address" ColumnName="company_address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="pharmaShopModel.Customers">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="ID_customer" ColumnName="ID_customer" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="account_ID" ColumnName="account_ID" />
+          <ScalarProperty Name="age" ColumnName="age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customs">
+      <EntityTypeMapping TypeName="pharmaShopModel.Customs">
+        <MappingFragment StoreEntitySet="Customs">
+          <ScalarProperty Name="ID_custom" ColumnName="ID_custom" />
+          <ScalarProperty Name="customer_ID" ColumnName="customer_ID" />
+          <ScalarProperty Name="product_ID" ColumnName="product_ID" />
+          <ScalarProperty Name="product_amount" ColumnName="product_amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DepartmentProduct">
+      <EntityTypeMapping TypeName="pharmaShopModel.DepartmentProduct">
+        <MappingFragment StoreEntitySet="DepartmentProduct">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="department_ID" ColumnName="department_ID" />
+          <ScalarProperty Name="product_ID" ColumnName="product_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="pharmaShopModel.Departments">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="ID_department" ColumnName="ID_department" />
+          <ScalarProperty Name="department_name" ColumnName="department_name" />
+          <ScalarProperty Name="address_name" ColumnName="address_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="pharmaShopModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ID_product" ColumnName="ID_product" />
+          <ScalarProperty Name="productType_ID" ColumnName="productType_ID" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductTypes">
+      <EntityTypeMapping TypeName="pharmaShopModel.ProductTypes">
+        <MappingFragment StoreEntitySet="ProductTypes">
+          <ScalarProperty Name="ID_type" ColumnName="ID_type" />
+          <ScalarProperty Name="type_label" ColumnName="type_label" />
+          <ScalarProperty Name="product_description" ColumnName="product_description" />
+          <ScalarProperty Name="company_ID" ColumnName="company_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="pharmaShopModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID_role" ColumnName="ID_role" />
+          <ScalarProperty Name="role_label" ColumnName="role_label" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff">
+      <EntityTypeMapping TypeName="pharmaShopModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="ID_staff" ColumnName="ID_staff" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="account_ID" ColumnName="account_ID" />
+          <ScalarProperty Name="post_ID" ColumnName="post_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StaffPosts">
+      <EntityTypeMapping TypeName="pharmaShopModel.StaffPosts">
+        <MappingFragment StoreEntitySet="StaffPosts">
+          <ScalarProperty Name="ID_post" ColumnName="ID_post" />
+          <ScalarProperty Name="post_name" ColumnName="post_name" />
+          <ScalarProperty Name="post_description" ColumnName="post_description" />
+          <ScalarProperty Name="department_ID" ColumnName="department_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

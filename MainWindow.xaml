@@ -1,0 +1,22 @@
+﻿<Window x:Class="pharmaShop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pharmaShop"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Authorise" Height="400" Width="400" Background="#FFBCDEEE">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="loginTxt"  Grid.Row="1" md:HintAssist.Hint="Введите логин"/>
+        <PasswordBox x:Name="passwordTxt" Grid.Row="2" md:HintAssist.Hint="Введите пароль"/>
+        <Button x:Name="authButton" Content="Авторизоваться" Grid.Row="3" Grid.ColumnSpan="2" Click="authButton_Click"/>
+        
+    </Grid>
+</Window>
