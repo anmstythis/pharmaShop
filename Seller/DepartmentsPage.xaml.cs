@@ -71,24 +71,34 @@ namespace pharmaShop.Seller
 
         private void importbutton_Click(object sender, RoutedEventArgs e)
         {
-            var importFile = ConvertToJson.DeserializeObject<List<Departments>>();
-            foreach (var item in importFile)
+            try
             {
-                Departments depart = new Departments();
-                depart.department_name = item.department_name;
-                depart.address_name = item.address_name;
+                var importFile = ConvertToJson.DeserializeObject<List<Departments>>();
+                foreach (var item in importFile)
+                {
+                    Departments depart = new Departments();
+                    depart.department_name = item.department_name;
+                    depart.address_name = item.address_name;
 
-                pharmaDB.Departments.Add(depart);
-                pharmaDB.SaveChanges();
+                    pharmaDB.Departments.Add(depart);
+                    pharmaDB.SaveChanges();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Здание с таким адресом уже есть!", "Ошибка импорта!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             departDgr.ItemsSource = pharmaDB.Departments.ToList();
         }
 
         private void departDgr_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selected = departDgr.SelectedItem as Departments;
-            departName.Text = selected.department_name;
-            departAddress.Text = selected.address_name;
+            if (departDgr.SelectedItem != null)
+            {
+                var selected = departDgr.SelectedItem as Departments;
+                departName.Text = selected.department_name;
+                departAddress.Text = selected.address_name;
+            }
         }
     }
 }

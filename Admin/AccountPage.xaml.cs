@@ -54,13 +54,13 @@ namespace pharmaShop.Admin
             }
             catch
             {
-                if (login.Text == string.Empty || password.Password == string.Empty)
+                if (login.Text == string.Empty || password.Password == string.Empty || roleCbx.SelectedItem == null)
                 {
-                    MessageBox.Show("Введены не все данные!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Не все поля заполнены!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                else if (roleCbx.SelectedItem == null)
+                else if (login.Text != string.Empty && password.Password != string.Empty && roleCbx.SelectedItem != null)
                 {
-                    MessageBox.Show("Не выбрана роль!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Не все поля заполнены корректно!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             finally

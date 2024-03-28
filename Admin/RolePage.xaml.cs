@@ -27,19 +27,42 @@ namespace pharmaShop.Admin
             roleDgr.ItemsSource = pharmaDB.Roles.ToList();
         }
 
+        private bool NumCheck(string text)
+        {
+            bool result = false;
+            if (text.Contains("0") || text.Contains("1") || text.Contains("2") || text.Contains("3") || text.Contains("4")
+                || text.Contains("5") || text.Contains("6") || text.Contains("7") || text.Contains("8") || text.Contains("9"))
+            {
+                result = true;
+            }
+            return result;
+        }
+
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Roles roleinfo = new Roles();
-                roleinfo.role_label = rolename.Text;
+
+                bool role = NumCheck(rolename.Text);
+                if (role == false)
+                {
+                    roleinfo.role_label = rolename.Text;
+                }
                 pharmaDB.Roles.Add(roleinfo);
 
                 pharmaDB.SaveChanges();
             }
             catch
             {
-                MessageBox.Show("Не все поля заполнены!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (rolename.Text == string.Empty)
+                {
+                    MessageBox.Show("Не все поля заполнены!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Не все поля заполнены корректно!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             finally
             {

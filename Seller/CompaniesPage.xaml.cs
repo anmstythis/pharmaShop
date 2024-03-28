@@ -109,16 +109,19 @@ namespace pharmaShop.Seller
 
         private void typeDgr_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selected = typeDgr.SelectedItem as ProductTypes;
-            typeName.Text = selected.type_label;
-            typeDescr.Text = selected.product_description;
-            try
+            if (typeDgr.SelectedItem != null)
             {
-                compCbx.Text = selected.Companies.company_name;
-            }
-            catch
-            {
-                compCbx.Text = string.Empty;
+                var selected = typeDgr.SelectedItem as ProductTypes;
+                typeName.Text = selected.type_label;
+                typeDescr.Text = selected.product_description;
+                try
+                {
+                    compCbx.Text = selected.Companies.company_name;
+                }
+                catch
+                {
+                    compCbx.Text = string.Empty;
+                }
             }
         }
     }
