@@ -26,7 +26,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="prodDgr" Grid.Row="1" Grid.RowSpan="6" AutoGenerateColumns="False" Background="#FFBCDEEE" SelectionChanged="prodDgr_SelectionChanged">
+        <DataGrid x:Name="prodDgr" Grid.Row="1" Grid.RowSpan="7" AutoGenerateColumns="False" Background="#FFBCDEEE" SelectionChanged="prodDgr_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Products.product_name}" Header="Продукт"/>
                 <DataGridTextColumn Binding="{Binding Products.price}" Header="Цена"/>
@@ -38,7 +38,6 @@
         <Button x:Name="addButton" Content="Добавить" Grid.Column="1" Grid.Row="7" Click="addButton_Click"/>
         <Button x:Name="changeButton"  Content="Изменить" Grid.Column="2" Grid.Row="7" Click="changeButton_Click"/>
         <Button x:Name="deletebutton" Content="Удалить" Grid.Column="3" Grid.Row="7" Click="deletebutton_Click"/>
-        <Button x:Name="importbutton" Content="Импортировать данные" Grid.Row="7" Click="importbutton_Click"/>
         <TextBox x:Name="product"  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" md:HintAssist.Hint="Введите название продукта"/>
         <TextBox x:Name="price" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" md:HintAssist.Hint="Введите цену"/>
         <TextBox x:Name="amountRem" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" md:HintAssist.Hint="Введите количество"/>

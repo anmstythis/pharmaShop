@@ -74,10 +74,21 @@ namespace pharmaShop.Seller
             var importFile = ConvertToJson.DeserializeObject<List<Departments>>();
             foreach (var item in importFile)
             {
-                pharmaDB.Departments.Add(item);
+                Departments depart = new Departments();
+                depart.department_name = item.department_name;
+                depart.address_name = item.address_name;
+
+                pharmaDB.Departments.Add(depart);
+                pharmaDB.SaveChanges();
             }
-            departDgr.ItemsSource = null;
             departDgr.ItemsSource = pharmaDB.Departments.ToList();
+        }
+
+        private void departDgr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = departDgr.SelectedItem as Departments;
+            departName.Text = selected.department_name;
+            departAddress.Text = selected.address_name;
         }
     }
 }

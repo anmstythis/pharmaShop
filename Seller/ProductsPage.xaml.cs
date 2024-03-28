@@ -33,17 +33,6 @@ namespace pharmaShop.Seller
             departCbx.DisplayMemberPath = "department_name";
         }
 
-        private void importbutton_Click(object sender, RoutedEventArgs e)
-        {
-            List<Products> importFile = ConvertToJson.DeserializeObject<List<Products>>();
-            foreach (var item in importFile)
-            {
-                pharmaDB.Products.Add(item);
-            }
-            prodDgr.ItemsSource = null;
-            prodDgr.ItemsSource = pharmaDB.Products.ToList();
-        }
-
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             try

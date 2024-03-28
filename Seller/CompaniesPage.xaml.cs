@@ -91,5 +91,35 @@ namespace pharmaShop.Seller
                 typeDgr.ItemsSource = pharmaDB.ProductTypes.ToList();
             }
         }
+
+        private void importbutton_Click(object sender, RoutedEventArgs e)
+        {
+            List<ProductTypes> importFile = ConvertToJson.DeserializeObject<List<ProductTypes>>();
+            foreach (var item in importFile)
+            {
+                ProductTypes type = new ProductTypes();
+                type.type_label = item.type_label;
+                type.product_description = item.product_description;
+
+                pharmaDB.ProductTypes.Add(type);
+                pharmaDB.SaveChanges();
+            }
+            typeDgr.ItemsSource = pharmaDB.ProductTypes.ToList();
+        }
+
+        private void typeDgr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = typeDgr.SelectedItem as ProductTypes;
+            typeName.Text = selected.type_label;
+            typeDescr.Text = selected.product_description;
+            try
+            {
+                compCbx.Text = selected.Companies.company_name;
+            }
+            catch
+            {
+                compCbx.Text = string.Empty;
+            }
+        }
     }
 }

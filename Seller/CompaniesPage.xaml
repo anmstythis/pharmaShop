@@ -26,7 +26,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="typeDgr" Grid.Row="1" Grid.RowSpan="7" AutoGenerateColumns="False" Background="#FFBCDEEE">
+        <DataGrid x:Name="typeDgr" Grid.Row="1" Grid.RowSpan="6" AutoGenerateColumns="False" Background="#FFBCDEEE" SelectionChanged="typeDgr_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding type_label}" Header="Тип продукта"/>
                 <DataGridTextColumn Binding="{Binding product_description}" Header="Описание"/>
@@ -40,5 +40,6 @@
         <TextBox x:Name="typeName"  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" md:HintAssist.Hint="Введите название отдела"/>
         <TextBox x:Name="typeDescr" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" md:HintAssist.Hint="Введите описание продукта"/>
         <ComboBox x:Name="compCbx" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" md:HintAssist.Hint="Выберите компанию"/>
+        <Button x:Name="importbutton" Content="Импортировать данные" Grid.Row="7" Click="importbutton_Click"/>
     </Grid>
 </Page>
